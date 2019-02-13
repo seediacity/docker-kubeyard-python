@@ -1,4 +1,4 @@
-FROM python:3.7.0@sha256:bcdcc0eaafb1d9ea8193be9e5194a8ec8ee2a925969fd5c46b20ee4dcd6b816d
+FROM python:3.6.8@sha256:00110125bd9c23f200cfd2cfa82e68b8ab2006e1358f7a048e005794aa51568f
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /package
 WORKDIR /package
