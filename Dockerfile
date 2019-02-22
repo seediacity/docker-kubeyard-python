@@ -12,12 +12,3 @@ RUN pip install --upgrade --no-cache-dir \
 COPY ./code_style_config /root
 ARG PIP_EXTRA_INDEX_URL
 ENV PIP_EXTRA_INDEX_URL $PIP_EXTRA_INDEX_URL
-ONBUILD COPY requirements /requirements
-ONBUILD RUN bash -c 'if [ -f "/requirements/apt.txt" ]; then apt-get update && \
-                     apt-get -y install $(cat /requirements/apt.txt) && \
-                     rm -rf /var/lib/apt/lists/*; fi'
-ONBUILD RUN bash -c 'if [ -f "/requirements/python.txt" ]; then pip install --no-cache-dir -r /requirements/python.txt; fi'
-ONBUILD COPY source /package
-ONBUILD RUN pip install --no-deps --editable .
-ONBUILD RUN bash -c 'mv *.egg-info $(python -c "import site; print(site.getsitepackages()[0])")'
-ONBUILD RUN python setup.py clean
