@@ -5,7 +5,7 @@ WORKDIR /package
 COPY bin /scripts
 RUN cd /usr/local/bin && for f in /scripts/*; do ln -s "$f" $(basename "${f%.*}"); done
 RUN pip install --upgrade --no-cache-dir \
-    pip-tools==3.0.0 \
+    pip-tools==3.4.0 \
     flake8==3.5.0 \
     isort==4.3.4 \
     pytest==3.8.1
